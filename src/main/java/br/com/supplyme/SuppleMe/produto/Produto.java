@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -29,6 +30,8 @@ public class Produto {
 	private String cor;
 	@JsonProperty(value = "ingredients")
 	private String urlImage;
+	@JsonIgnore(value = true)
+	private Integer estoque;
 
 	public Produto() {
 
@@ -45,6 +48,7 @@ public class Produto {
 		this.marca = marca;
 		this.cor = cor;
 		this.urlImage = urlImages;
+		this.estoque = 1;
 	}
 
 	public Integer getId() {
@@ -109,6 +113,14 @@ public class Produto {
 
 	public void setUrlImage(String urlImage) {
 		this.urlImage = urlImage;
+	}
+
+	public Integer getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(Integer estoque) {
+		this.estoque = estoque;
 	}
 
 }

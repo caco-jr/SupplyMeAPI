@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,10 +20,9 @@ public class MercadoLivreRest {
 
 	
 	@GetMapping(path = "/redirect")
-	public String redirectMeli(@PathVariable("code") String subscriptionCode, @PathVariable("operation") String operation) {
+	public String redirectMeli() {
 		LOGGER.info("Redirect works!");
-		
-		this.mercadoLivreService.cadastrarProduto(subscriptionCode, operation);
+		this.mercadoLivreService.cadastrarProduto("TG-5b753cc0e4b08ac6c8563229-344374832", null);
 		
 		
 		return "https://supply-me-api.herokuapp.com/";
