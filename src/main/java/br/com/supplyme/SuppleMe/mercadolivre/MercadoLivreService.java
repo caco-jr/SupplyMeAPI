@@ -42,7 +42,7 @@ public class MercadoLivreService {
 			map.add("grant_type", "authorization_code");
 			map.add("client_id", CLIENT_ID.toString());
 			map.add("client_secret", CLIENT_KEY);
-			map.add("redirect_url", redirect);
+			map.add("redirect_uri", redirect);
 			map.add("code", code);
 
 			logger.info("MAP -> VALUES -> " + map.get("grant_type") + map.get("client_id") + map.get("client_secret")
