@@ -12,6 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import br.com.supplyme.SuppleMe.estoque.EstoqueRepository;
+import br.com.supplyme.SuppleMe.estoque.EstoqueService;
+
 @Service
 public class ProdutoService {
 	public static final String PATH_RESOURCE = "https://www.datakick.org/api/";
@@ -20,6 +23,9 @@ public class ProdutoService {
 	
 	@Autowired
 	private ProdutoRepository produtoRepository;
+	
+	@Autowired
+	private EstoqueService estoqueService;
 	
 	public void cadastrarProduto(String ean) {
 		try {
@@ -39,6 +45,7 @@ public class ProdutoService {
 			
 			if (produtoResponse.getBody() != null) {
 				this.produtoRepository.save(produtoResponse.getBody());
+				this.estoqueService.adiciona(produto.getId(), 1);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -48,5 +55,4 @@ public class ProdutoService {
 	public List<Produto> produtos() {
 		return this.produtoRepository.findAll();
 	}
-
 }
