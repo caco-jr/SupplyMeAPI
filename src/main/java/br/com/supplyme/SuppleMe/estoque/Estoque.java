@@ -4,9 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-
-import br.com.supplyme.SuppleMe.produto.Produto;
 
 @Entity
 public class Estoque {
@@ -15,14 +12,13 @@ public class Estoque {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Integer quantidade;
-	@JoinColumn(name = "id_produto")
-	private Produto produto;
+	private Integer produto;
 
 	public Estoque() {
 
 	}
 
-	public Estoque(Integer id, Integer quantidade, Produto produto) {
+	public Estoque(Integer id, Integer quantidade, Integer produto) {
 		super();
 		this.id = id;
 		this.quantidade = quantidade;
@@ -45,11 +41,11 @@ public class Estoque {
 		this.quantidade = quantidade;
 	}
 
-	public Produto getProduto() {
+	public Integer getProduto() {
 		return produto;
 	}
 
-	public void setProduto(Produto produto) {
+	public void setProduto(Integer produto) {
 		this.produto = produto;
 	}
 
