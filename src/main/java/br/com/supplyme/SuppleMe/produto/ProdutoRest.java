@@ -41,5 +41,11 @@ public class ProdutoRest {
 		}
 		return ResponseEntity.badRequest().build();
 	}
+	
+	//Cria o anuncio no ML
+	@GetMapping(value = "/anuncio")
+	public void anuncio(){
+		this.produtoService.criaAnuncio();
+	}
 
 }
