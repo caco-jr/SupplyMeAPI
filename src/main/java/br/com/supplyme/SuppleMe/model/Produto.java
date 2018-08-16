@@ -1,12 +1,9 @@
 package br.com.supplyme.SuppleMe.model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -14,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Produto {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@JsonProperty(value = "gtin14")
@@ -31,9 +28,6 @@ public class Produto {
 	@JsonProperty(value = "ingredients")
 	private String category;
 	
-	@OneToMany(targetEntity = Images.class)
-	private List<Images> images;
-
 	public Long getId() {
 		return id;
 	}
@@ -74,12 +68,13 @@ public class Produto {
 		this.color = color;
 	}
 
-	public List<Images> getImages() {
-		return images;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setImages(List<Images> images) {
-		this.images = images;
+	public void setCategory(String category) {
+		this.category = category;
 	}
+
 
 }
