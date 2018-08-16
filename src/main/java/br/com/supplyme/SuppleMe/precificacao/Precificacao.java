@@ -22,12 +22,16 @@ public class Precificacao {
 	private Integer qtdProduto;
 	@JsonProperty(value = "porcentagem_produto")
 	private Double porcentagemProduto;
-	@JsonProperty(value = "total_desconto", access = Access.READ_ONLY)
+	@JsonProperty(value = "total_desconto")
 	private Double valorTotalDesconto;
-	@JsonProperty(value = "porcentagem_total", access = Access.READ_ONLY)
+	@JsonProperty(value = "porcentagem_total")
 	private Double porcentagemTotal;
 	@JsonProperty(value = "preco_final", access = Access.READ_ONLY)
 	private Double precoFinal;
+	
+	public Precificacao() {
+		
+	}
 	
 	public Precificacao(Integer id, Double precoInicial, Integer qtdProduto, Double porcentagemProduto,
 			Double valorTotalDesconto, Double porcentagemTotal, Double precoFinal) {

@@ -1,7 +1,9 @@
 package br.com.supplyme.SuppleMe.precificacao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,5 +20,10 @@ public class PrecificacaoRest {
 	@PostMapping(value = "/salvar")
 	public void salvaPrecificacao(@RequestBody Precificacao preci) {
 		this.precificacaoService.adicionaPrecos(preci);
+	}
+	
+	@GetMapping(value = "/recuperar")
+	public ResponseEntity<?> recuperaPrecificacao(){
+		return ResponseEntity.ok(this.precificacaoService.recuperaPrecos());
 	}
 }
