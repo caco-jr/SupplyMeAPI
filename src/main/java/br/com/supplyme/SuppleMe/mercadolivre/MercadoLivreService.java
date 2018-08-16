@@ -2,11 +2,16 @@ package br.com.supplyme.SuppleMe.mercadolivre;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 public class MercadoLivreService {
@@ -22,26 +27,32 @@ public class MercadoLivreService {
 	static String redirect = "https://supply-me-api.herokuapp.com/mercadolivre/redirect";
 
 	private Client client = ClientBuilder.newClient();
+	
+	private RestTemplate restTemplate = new RestTemplate();
 
 	public void cadastrarProduto(String code) {
 		try {
 			
 			logger.info("cadastrarProduto() -> CODE " + code );
 			
-			WebTarget getAccessToken = client.target(PATH_OAUTH);
-			Response response = null;
-			response = getAccessToken.queryParam("grant_type", "authorization_code").queryParam("client_id", CLIENT_ID)
-					.queryParam("client_secret", CLIENT_KEY).queryParam("redirect_uri", redirect)
-					.queryParam("code", code).request().post(null);
-
-			System.out.println("BODY: " + response.getEntity());
-
-			//response.readEntity(String.class);
 			
-			logger.info("JSON -> " + response.readEntity(String.class));
-			if (response != null) {
-				response.close();
-			}
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+
+			MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
+			map.add("grant_type", "first.last@example.com");
+			map.add("client_id", CLIENT_ID.toString());
+			map.add("client_secret", CLIENT_KEY);
+			map.add("redirect_uri", redirect);
+			map.add("code", code);
+			
+
+			HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
+
+			ResponseEntity<String> response = restTemplate.postForEntity(PATH_OAUTH, request , String.class );
+
+			
+			logger.info("JSON -> " + response.getBody());
 
 		} catch (Exception e) {
 			logger.info("ERROR -> " + e.getLocalizedMessage());
