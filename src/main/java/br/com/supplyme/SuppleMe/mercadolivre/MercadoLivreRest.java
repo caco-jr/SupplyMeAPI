@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +16,7 @@ public class MercadoLivreRest {
 	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 	
 	@GetMapping(path = "/redirect")
-	public String redirectMeli() {
+	public String redirectMeli(@PathVariable("code") String subscriptionCode, @PathVariable("operation") String operation) {
 		LOGGER.info("Redirect works!");
 		return "https://supply-me-api.herokuapp.com/";
 	}
