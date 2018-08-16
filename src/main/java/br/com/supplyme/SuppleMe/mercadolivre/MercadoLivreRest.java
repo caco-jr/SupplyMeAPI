@@ -19,5 +19,11 @@ public class MercadoLivreRest {
 		LOGGER.info("Redirect works!");
 		return "https://supply-me-api.herokuapp.com/";
 	}
+	
+	@GetMapping(path = "/notification")
+	public String notificationMeli() {
+		LOGGER.info("Notification received");
+		return "https://supply-me-api.herokuapp.com/";
+	}
 
 }
