@@ -23,10 +23,10 @@ public class MercadoLivreService {
 
 	private Client client = ClientBuilder.newClient();
 
-	public void cadastrarProduto(String code, String operation) {
+	public void cadastrarProduto(String code) {
 		try {
 			
-			logger.info("cadastrarProduto() -> " + code + " | " + operation);
+			logger.info("cadastrarProduto() -> CODE " + code );
 			
 			WebTarget getAccessToken = client.target(PATH_OAUTH);
 			Response response = null;
@@ -44,6 +44,7 @@ public class MercadoLivreService {
 			}
 
 		} catch (Exception e) {
+			logger.info("ERROR -> " + e.getLocalizedMessage());
 			e.printStackTrace();
 		}
 	}
