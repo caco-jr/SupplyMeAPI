@@ -1,6 +1,7 @@
 package br.com.supplyme.SuppleMe.produto;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,16 @@ public class ProdutoRest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@GetMapping(value = "/produtos")
+	public ResponseEntity<?> produtos(){
+		try {
+			return ResponseEntity.ok(this.produtoService.produtos());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ResponseEntity.badRequest().build();
 	}
 
 }

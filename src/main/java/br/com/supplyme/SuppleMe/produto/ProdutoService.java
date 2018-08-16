@@ -1,5 +1,7 @@
 package br.com.supplyme.SuppleMe.produto;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -42,4 +44,9 @@ public class ProdutoService {
 			e.printStackTrace();
 		}
 	}
+
+	public List<Produto> produtos() {
+		return this.produtoRepository.findAll();
+	}
+
 }
