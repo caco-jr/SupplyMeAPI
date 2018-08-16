@@ -40,7 +40,7 @@ public class MercadoLivreService {
 			headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 
 			MultiValueMap<String, String> map= new LinkedMultiValueMap<String, String>();
-			map.add("grant_type", "first.last@example.com");
+			map.add("grant_type", "authorization_code");
 			map.add("client_id", CLIENT_ID.toString());
 			map.add("client_secret", CLIENT_KEY);
 			map.add("redirect_uri", redirect);
