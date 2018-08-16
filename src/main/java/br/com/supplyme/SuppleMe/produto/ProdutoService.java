@@ -23,7 +23,7 @@ public class ProdutoService {
 	
 	public void cadastrarProduto(String ean) {
 		try {
-			String postUrl = PATH_RESOURCE.concat(ean);
+			String postUrl = PATH_RESOURCE.concat("items/").concat(ean);
 
 			Produto produto = new Produto(null, ean, "Disney", "Copo Mickey", "Plástico", "Disney", "Preto",
 					"http://www.magiaeimaginacao.com.br/1936-thickbox_default/copo-termico-aveludado-mickey.jpg");
@@ -33,7 +33,7 @@ public class ProdutoService {
 
 			HttpEntity<Produto> entity = new HttpEntity<>(produto, headers);
 
-			ResponseEntity<Produto> produtoResponse = this.restTemplate.exchange(postUrl, HttpMethod.POST, entity,
+			ResponseEntity<Produto> produtoResponse = this.restTemplate.exchange(postUrl, HttpMethod.PUT, entity,
 					new ParameterizedTypeReference<Produto>() {
 					});
 			
