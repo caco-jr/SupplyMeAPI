@@ -5,11 +5,14 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MercadoLivreService {
 
+	Logger logger = Logger.getLogger(MercadoLivreService.class);
+	
 	static String PATH_OAUTH = "https://api.mercadolibre.com/oauth/token";
 
 	static Long CLIENT_ID = 6110280255098136L;
@@ -20,7 +23,9 @@ public class MercadoLivreService {
 
 	public void cadastrarProduto(String code, String operation) {
 		try {
-
+			
+			logger.info("cadastrarProduto() -> " + code + " | " + operation);
+			
 			WebTarget getAccessToken = client.target(PATH_OAUTH);
 			Response response = null;
 			response = getAccessToken.queryParam("grant_type", "authorization_code").queryParam("client_id", CLIENT_ID)
@@ -29,8 +34,9 @@ public class MercadoLivreService {
 
 			System.out.println("BODY: " + response.getEntity());
 
-			response.readEntity(String.class);
-
+			//response.readEntity(String.class);
+			
+			logger.info("JSON -> " + response.readEntity(String.class));
 			if (response != null) {
 				response.close();
 			}
