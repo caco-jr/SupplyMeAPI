@@ -1,6 +1,7 @@
 package br.com.supplyme.SuppleMe.mercadolivre;
 
 import javax.ws.rs.PathParam;
+import javax.ws.rs.QueryParam;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +24,7 @@ public class MercadoLivreRest {
 
 	
 	@GetMapping(path = "/redirect")
-	public String redirectMeli(@PathParam("code") String subscriptionCode) {
+	public String redirectMeli(@QueryParam("code") String subscriptionCode) {
 		LOGGER.info("Redirect works!");
 		
 		this.mercadoLivreService.cadastrarProduto(subscriptionCode);
