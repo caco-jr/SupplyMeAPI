@@ -30,7 +30,7 @@ public class MercadoLivreService {
 
 	private RestTemplate restTemplate = new RestTemplate();
 
-	public void cadastrarProduto(String code) {
+	public void getAcessToken(String code) {
 		try {
 
 			logger.info("cadastrarProduto() -> CODE " + code);

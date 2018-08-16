@@ -22,9 +22,9 @@ public class MercadoLivreRest {
 	
 	@GetMapping(path = "/redirect")
 	public String redirectMeli(@RequestParam("code") String subscriptionCode) {
-		LOGGER.info("Redirect works!");
+		LOGGER.info("cadastrarProduto() -> CODE " + subscriptionCode);
 		
-		this.mercadoLivreService.cadastrarProduto(subscriptionCode);
+		this.mercadoLivreService.getAcessToken(subscriptionCode);
 		
 		
 		return "https://supply-me-api.herokuapp.com/";
