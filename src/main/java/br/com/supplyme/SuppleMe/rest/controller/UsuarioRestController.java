@@ -23,11 +23,7 @@ public class UsuarioRestController {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
-	@GetMapping("test")
-	public String helloWorld() {
-		return "Hello World";
-	}
-
+	//ENDPOINT PARA CADASTRAR USUÁRIO
 	@PostMapping("/cadastrar")
 	public void cadastrar(Usuario usuario) {
 
@@ -39,6 +35,7 @@ public class UsuarioRestController {
 		}
 	}
 	
+	//ENDPOINT PARA LISTAR TODOS OS USUÁRIOS
 	@GetMapping("/")
 	public Iterable<Usuario> listarProdutos() {
 		
@@ -48,6 +45,7 @@ public class UsuarioRestController {
 		
 	}
 
+	//ENDPOINT PARA BUSCAR UMA DETERMINADO USUÁRIO
 	@GetMapping("/{id}")
 	public Usuario buscarUsuario(@PathVariable Long id) {
 
@@ -55,7 +53,8 @@ public class UsuarioRestController {
 
 		return usuarioRepository.findById(id).orElse(null);
 	}
-
+	
+	//ENDPOINT PARA DELETAR UM USUÁRIO
 	@DeleteMapping("/{id}")
 	public void deletarProduto(@PathVariable Long id) {
 

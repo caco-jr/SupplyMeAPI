@@ -27,6 +27,7 @@ public class ProdutoService {
 	@Autowired
 	private EstoqueService estoqueService;
 	
+	//SERVIÇO PARA CADASTRAR UM PRODUTO
 	public void cadastrarProduto(String ean) {
 		try {
 			String postUrl = PATH_RESOURCE.concat("items/").concat(ean);
@@ -52,6 +53,7 @@ public class ProdutoService {
 		}
 	}
 
+	//SERVIÇO PARA LISTAR O PRODUTOS
 	public List<Produto> produtos() {
 		return this.produtoRepository.findAll();
 	}

@@ -1,8 +1,5 @@
 package br.com.supplyme.SuppleMe.mercadolivre;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -25,8 +22,6 @@ public class MercadoLivreService {
 	static String CLIENT_KEY = "H4oioUq8cOj0hzC7kJNaw9q5yhmPjzQ5";
 
 	static String redirect = "https://supply-me-api.herokuapp.com/mercadolivre/redirect";
-
-	private Client client = ClientBuilder.newClient();
 
 	private RestTemplate restTemplate = new RestTemplate();
 

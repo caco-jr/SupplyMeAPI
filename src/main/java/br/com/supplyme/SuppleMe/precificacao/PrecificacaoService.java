@@ -10,6 +10,7 @@ public class PrecificacaoService {
 	@Autowired
 	private PrecificacaoRepository precificacaoRepository;
 
+	//SERVIÇO PARA ADICIONAR PREÇO FINAL 
 	public void adicionaPrecos(Precificacao preci) {
 		try {
 			preci.setPrecoFinal(preci.getPrecoInicial());
@@ -19,6 +20,7 @@ public class PrecificacaoService {
 		}
 	}
 
+	//SERVIÇO DE LISTAR TODOS OS PREÇOS
 	public List<Precificacao> recuperaPrecos() {
 		return this.precificacaoRepository.findAll();
 	}

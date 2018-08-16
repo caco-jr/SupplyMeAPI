@@ -1,5 +1,6 @@
 package br.com.supplyme.SuppleMe.produto;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,18 +14,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/produto")
 public class ProdutoRest {
+	
+	Logger logger = Logger.getLogger(ProdutoRest.class);
+	
 	@Autowired
 	private ProdutoService produtoService;
 
+	//CADASTRAR UM PRODUTO ATRAVÉS DA API EAN
 	@GetMapping(value = "/cadastro/{ean}")
 	public void cadastrar(@PathVariable("ean") String ean) {
 		try {
+			logger.info("EAN: " + ean);
 			this.produtoService.cadastrarProduto(ean);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	//LISTA TODOS OS PRODUTOS
 	@GetMapping(value = "/produtos")
 	public ResponseEntity<?> produtos() {
 		try {

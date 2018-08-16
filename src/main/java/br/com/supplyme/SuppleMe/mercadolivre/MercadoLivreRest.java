@@ -19,10 +19,9 @@ public class MercadoLivreRest {
 	@Autowired
 	private MercadoLivreService mercadoLivreService;
 
-	
 	@GetMapping(path = "/redirect")
 	public String redirectMeli(@RequestParam("code") String subscriptionCode) {
-		LOGGER.info("cadastrarProduto() -> CODE " + subscriptionCode);
+		LOGGER.info("RedirectMeli() -> CODE " + subscriptionCode);
 		
 		this.mercadoLivreService.getAcessToken(subscriptionCode);
 		
