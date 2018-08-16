@@ -1,5 +1,7 @@
 package br.com.supplyme.SuppleMe.mercadolivre;
 
+import javax.ws.rs.PathParam;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,7 @@ public class MercadoLivreRest {
 
 	
 	@GetMapping(path = "/redirect")
-	public String redirectMeli(@PathVariable("code") String subscriptionCode, @PathVariable("operation") String operation) {
+	public String redirectMeli(@PathParam("code") String subscriptionCode, @PathVariable("operation") String operation) {
 		LOGGER.info("Redirect works!");
 		
 		this.mercadoLivreService.cadastrarProduto(subscriptionCode, operation);

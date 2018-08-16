@@ -18,6 +18,8 @@ public class MercadoLivreService {
 	static Long CLIENT_ID = 6110280255098136L;
 
 	static String CLIENT_KEY = "H4oioUq8cOj0hzC7kJNaw9q5yhmPjzQ5";
+	
+	static String redirect = "https://supply-me-api.herokuapp.com/mercadolivre/redirect";
 
 	private Client client = ClientBuilder.newClient();
 
@@ -29,7 +31,7 @@ public class MercadoLivreService {
 			WebTarget getAccessToken = client.target(PATH_OAUTH);
 			Response response = null;
 			response = getAccessToken.queryParam("grant_type", "authorization_code").queryParam("client_id", CLIENT_ID)
-					.queryParam("client_secret", CLIENT_KEY).queryParam("redirect_uri", "www.google.com")
+					.queryParam("client_secret", CLIENT_KEY).queryParam("redirect_uri", redirect)
 					.queryParam("code", code).request().post(null);
 
 			System.out.println("BODY: " + response.getEntity());
