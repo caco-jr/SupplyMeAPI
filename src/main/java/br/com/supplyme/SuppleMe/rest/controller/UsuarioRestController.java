@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping( value = "/usuario")
 public class UsuarioRestController {
 	
-	
 	@GetMapping("test")
 	public String helloWorld() {
-		
 		return "Hello World";
 	}
 }
